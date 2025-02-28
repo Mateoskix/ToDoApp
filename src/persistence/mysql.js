@@ -7,7 +7,7 @@ const {
     MYSQL_HOST: host,
     MYSQL_USER: user,
     MYSQL_PASSWORD: password,
-    MYSQL_DB: database,
+    MYSQL_DATABASE: database,
   } = process.env;
   
 
