@@ -31,7 +31,7 @@ async function init() {
             err => {
                 if (err) return rej(err);
 
-                console.log(`Connected to mysql db at host ${HOST}`);
+                console.log(`Connected to mysql db at host ${host}`);
                 acc();
             },
         );
