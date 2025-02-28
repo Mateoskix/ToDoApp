@@ -1,26 +1,19 @@
 const waitPort = require('wait-port');
 const fs = require('fs');
 const mysql = require('mysql');
+require('dotenv').config();
 
 const {
-    MYSQL_HOST: HOST,
-    MYSQL_HOST_FILE: HOST_FILE,
-    MYSQL_USER: USER,
-    MYSQL_USER_FILE: USER_FILE,
-    MYSQL_PASSWORD: PASSWORD,
-    MYSQL_PASSWORD_FILE: PASSWORD_FILE,
-    MYSQL_DB: DB,
-    MYSQL_DB_FILE: DB_FILE,
-} = process.env;
+    MYSQL_HOST: host,
+    MYSQL_USER: user,
+    MYSQL_PASSWORD: password,
+    MYSQL_DB: database,
+  } = process.env;
+  
 
 let pool;
 
 async function init() {
-    const host = HOST_FILE ? fs.readFileSync(HOST_FILE) : HOST;
-    const user = USER_FILE ? fs.readFileSync(USER_FILE) : USER;
-    const password = PASSWORD_FILE ? fs.readFileSync(PASSWORD_FILE) : PASSWORD;
-    const database = DB_FILE ? fs.readFileSync(DB_FILE) : DB;
-
     await waitPort({ host, port : 3306});
 
     pool = mysql.createPool({
@@ -38,7 +31,7 @@ async function init() {
             err => {
                 if (err) return rej(err);
 
-                console.log(`Connected to mysql db at host ${HOST}`);
+                console.log(`Connected to mysql db at host ${host}`);
                 acc();
             },
         );
