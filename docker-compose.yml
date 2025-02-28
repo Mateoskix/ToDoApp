@@ -1,0 +1,8 @@
+services:
+  frontend:
+    build:
+      context: ./
+      dockerfile: dockerfile
+    image: matteoskix/todoapp:latest
+    ports:
+    - "3000:3000"
